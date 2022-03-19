@@ -25,9 +25,42 @@ namespace Base_CSharp_course_exercise
             Console.WriteLine("Your text:");
             string text;
             List<string> splittedText = new List<string>();
-            
+
+
+            List<Word> words = new List<Word>();   
+
+
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string line;
+                int counter = 1;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    Console.WriteLine(line);
+                    var temp = TextParser.SplittingText(line);
+                    foreach (var word in temp)
+                    {
+                        Word temporaryWord = new Word()
+                        {
+                            Line = counter ,
+                            Name = word,
+                            Position = (line.IndexOf(word)+1)
+                        
+                        };
+                        words.Add(temporaryWord);
+                    }
+                    splittedText.AddRange(temp);
+
+                    counter++;
+                }
+            }
             Console.WriteLine("----------------------------------------------------------");
             Console.WriteLine("Statistics:");
+            foreach (var word in words)
+            {
+                Console.WriteLine($"{word.Name} - line:{word.Line}, position:{word.Position}");
+            }
+            Console.WriteLine("----------------------------------------------------------");
         }
     }
 }

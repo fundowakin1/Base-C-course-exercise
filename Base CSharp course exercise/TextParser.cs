@@ -14,6 +14,9 @@ namespace Base_CSharp_course_exercise
             return text.Trim().Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
 
-        public static Dictionary<int > "1.25"
+        //public static List<string> PuttingTextToDictionary(List<string> line)
+        //{
+
+        //}
     }
 }
