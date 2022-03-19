@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Collections.Generic;
 
 namespace Base_CSharp_course_exercise
 {
@@ -18,7 +20,14 @@ namespace Base_CSharp_course_exercise
     {
         static void Main(string[] args)
         {
-            var text = ""
+            Console.WriteLine("Please, input full path to your file:");
+            string path = Console.ReadLine();
+            Console.WriteLine("Your text:");
+            string text;
+            List<string> splittedText = new List<string>();
+            
+            Console.WriteLine("----------------------------------------------------------");
+            Console.WriteLine("Statistics:");
         }
     }
 }
