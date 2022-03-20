@@ -24,11 +24,30 @@ namespace Base_CSharp_course_exercise
             string path = Console.ReadLine();
             Console.WriteLine("Your text:");
 
-            List<string> splittedText = new List<string>();
-            List<Word> words = new List<Word>();
+            List<string> splittedText = new();
+            List<Word> words = new();
 
-            TextParser.PuttingTextToDictionary(path, splittedText, words);   
+            TextParser.PuttingWordsToList(path, splittedText, words);
 
+            Dictionary<string, int> numberOfWords = new();
+
+            for (int i = 0; i < splittedText.Count; i++)
+            {
+                splittedText[i] = splittedText[i].ToLower();
+            }
+
+            for (int i = 0; i < splittedText.Count; i++)
+            {
+                if (numberOfWords.ContainsKey(splittedText[i]))
+                {
+                    numberOfWords[splittedText[i]]++;
+                    splittedText.Remove(splittedText[i]);
+                }
+                else
+                {
+                    numberOfWords.Add(splittedText[i], 0);
+                }
+            }
 
             Console.WriteLine("\n\n----------------------------------------------------------");
             Console.WriteLine("Statistics:");

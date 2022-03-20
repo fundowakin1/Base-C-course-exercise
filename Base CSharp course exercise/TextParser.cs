@@ -15,7 +15,7 @@ namespace Base_CSharp_course_exercise
             return text.Trim().Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
 
-        public static void PuttingTextToDictionary(string path, List<string> splittedText, List<Word> words)
+        public static void PuttingWordsToList(string path, List<string> splittedText, List<Word> words)
         {
             using (StreamReader reader = new StreamReader(path))
             {
