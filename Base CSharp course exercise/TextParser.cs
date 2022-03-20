@@ -34,8 +34,11 @@ namespace Base_CSharp_course_exercise
                             Position = (line.IndexOf(word) + 1)
 
                         };
+                        line = line.Remove(line.IndexOf(word), word.Length)
+                            .Insert(line.IndexOf(word), new string(' ', word.Length));
+
                         words.Add(temporaryWord);
-                    }
+                    } 
                     splittedText.AddRange(temp);
 
                     counter++;
@@ -64,11 +67,20 @@ namespace Base_CSharp_course_exercise
             }
         }
 
-        public static void FindWord(Dictionary<string, int> numberOfWords, string findedWord)
+        public static void FindWord(Dictionary<string, int> numberOfWords, List<Word> words, string findedWord)
         {
-            Console.WriteLine("Word \"{0}\" was met in text {1} times",
+            Console.WriteLine("Word \"{0}\" was met in text {1} times\n",
                 findedWord, 
                 numberOfWords.FirstOrDefault(x => x.Key == findedWord).Value);
+            foreach (var word in words)
+            {
+                if (findedWord.ToUpper() == word.Name.ToUpper())
+                {
+                    Console.WriteLine("Word \"{0}\" occured in {1} line at {2} position", 
+                        findedWord, word.Line, word.Position);
+                }
+                
+            }
         }
     }
 }

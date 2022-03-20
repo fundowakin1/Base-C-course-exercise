@@ -43,21 +43,18 @@ namespace Base_CSharp_course_exercise
                 Console.WriteLine("|------------------|");
             }
             string findedWord = " ";
-            while (true)
+
+            while (findedWord != "-1")
             {
-                Console.WriteLine("Type your word to see statistics: (type \"leave the programme\" to turn off programm)");
+                Console.WriteLine("Type your word to see statistics: (type \"-1\" to turn off programm)");
                 findedWord = Console.ReadLine();
-                if (findedWord!=null)
+                if (findedWord == "-1")
                 {
-                    if (findedWord == "leave the programme")
-                    {
-                        break;
-                    }
-                    TextParser.FindWord(numberOfWords, findedWord);
+                    Console.WriteLine("Have a nice day");
+                    Environment.Exit(0);
                 }
-
+                TextParser.FindWord(numberOfWords, words, findedWord);
             }
-
         }
     }
 }
