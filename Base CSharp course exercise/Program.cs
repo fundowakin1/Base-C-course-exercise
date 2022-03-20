@@ -42,6 +42,21 @@ namespace Base_CSharp_course_exercise
                 Console.WriteLine("|{0,-10} | {1,-5}|", word.Key, word.Value);
                 Console.WriteLine("|------------------|");
             }
+            string findedWord = " ";
+            while (true)
+            {
+                Console.WriteLine("Type your word to see statistics: (type \"leave the programme\" to turn off programm)");
+                findedWord = Console.ReadLine();
+                if (findedWord!=null)
+                {
+                    if (findedWord == "leave the programme")
+                    {
+                        break;
+                    }
+                    TextParser.FindWord(numberOfWords, findedWord);
+                }
+
+            }
 
         }
     }

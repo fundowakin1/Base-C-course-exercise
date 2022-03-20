@@ -63,5 +63,12 @@ namespace Base_CSharp_course_exercise
                 }
             }
         }
+
+        public static void FindWord(Dictionary<string, int> numberOfWords, string findedWord)
+        {
+            Console.WriteLine("Word \"{0}\" was met in text {1} times",
+                findedWord, 
+                numberOfWords.FirstOrDefault(x => x.Key == findedWord).Value);
+        }
     }
 }
