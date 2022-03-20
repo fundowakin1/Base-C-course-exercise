@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Base_CSharp_course_exercise
 {
@@ -20,7 +18,7 @@ namespace Base_CSharp_course_exercise
             using (StreamReader reader = new StreamReader(path))
             {
                 string line;
-                int counter = 1;
+                var counter = 1;
                 while ((line = reader.ReadLine()) != null)
                 {
                     Console.WriteLine(line);
@@ -48,13 +46,10 @@ namespace Base_CSharp_course_exercise
 
         public static void CountingAndSortingWords(List<string> splittedText, Dictionary<string, int> numberOfWords)
         {
-            for (int i = 0; i < splittedText.Count; i++)
+            for (var i = 0; i < splittedText.Count; i++)
             {
                 splittedText[i] = splittedText[i].ToLower();
-            }
 
-            for (int i = 0; i < splittedText.Count; i++)
-            {
                 if (numberOfWords.ContainsKey(splittedText[i]))
                 {
                     numberOfWords[splittedText[i]]++;
@@ -69,18 +64,23 @@ namespace Base_CSharp_course_exercise
 
         public static void FindWord(Dictionary<string, int> numberOfWords, List<Word> words, string findedWord)
         {
+            if ((numberOfWords.FirstOrDefault(x => x.Key.ToLower() == findedWord.ToLower()).Value)==0)
+            {
+                Console.WriteLine("Word is not found!\n");
+                return;
+            }
             Console.WriteLine("Word \"{0}\" was met in text {1} times\n",
-                findedWord, 
+                findedWord,
                 numberOfWords.FirstOrDefault(x => x.Key.ToLower() == findedWord.ToLower()).Value);
             foreach (var word in words)
             {
                 if (findedWord.ToLower() == word.Name.ToLower())
                 {
-                    Console.WriteLine("Word \"{0}\" occured in {1} line at {2} position", 
+                    Console.WriteLine("Word \"{0}\" occured in {1} line at {2} position",
                         findedWord, word.Line, word.Position);
                 }
-                
             }
+            Console.WriteLine('\n');
 
         }
     }
