@@ -42,5 +42,26 @@ namespace Base_CSharp_course_exercise
                 }
             }
         }
+
+        public static void CountingAndSortingWords(List<string> splittedText, Dictionary<string, int> numberOfWords)
+        {
+            for (int i = 0; i < splittedText.Count; i++)
+            {
+                splittedText[i] = splittedText[i].ToLower();
+            }
+
+            for (int i = 0; i < splittedText.Count; i++)
+            {
+                if (numberOfWords.ContainsKey(splittedText[i]))
+                {
+                    numberOfWords[splittedText[i]]++;
+                    splittedText.Remove(splittedText[i]);
+                }
+                else
+                {
+                    numberOfWords.Add(splittedText[i], 1);
+                }
+            }
+        }
     }
 }
