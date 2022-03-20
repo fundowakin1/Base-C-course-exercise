@@ -23,42 +23,21 @@ namespace Base_CSharp_course_exercise
             Console.WriteLine("Please, input full path to your file:");
             string path = Console.ReadLine();
             Console.WriteLine("Your text:");
-            string text;
+
             List<string> splittedText = new List<string>();
+            List<Word> words = new List<Word>();
+
+            TextParser.PuttingTextToDictionary(path, splittedText, words);   
 
 
-            List<Word> words = new List<Word>();   
-
-
-            using (StreamReader reader = new StreamReader(path))
-            {
-                string line;
-                int counter = 1;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    Console.WriteLine(line);
-                    var temp = TextParser.SplittingText(line);
-                    foreach (var word in temp)
-                    {
-                        Word temporaryWord = new Word()
-                        {
-                            Line = counter ,
-                            Name = word,
-                            Position = (line.IndexOf(word)+1)
-                        
-                        };
-                        words.Add(temporaryWord);
-                    }
-                    splittedText.AddRange(temp);
-
-                    counter++;
-                }
-            }
-            Console.WriteLine("----------------------------------------------------------");
+            Console.WriteLine("\n\n----------------------------------------------------------");
             Console.WriteLine("Statistics:");
+            Console.WriteLine("----------------------------------------------------------\n\n");
+
             foreach (var word in words)
             {
-                Console.WriteLine($"{word.Name} - line:{word.Line}, position:{word.Position}");
+                Console.WriteLine("|{0,-15}- line:{1,-5} position:{2,-5}|", word.Name, word.Line, word.Position);
+                Console.WriteLine("|------------------------------------------|");
             }
             Console.WriteLine("----------------------------------------------------------");
         }
