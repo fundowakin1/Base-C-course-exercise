@@ -1,6 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Base_CSharp_course_exercise
 {
@@ -12,7 +12,7 @@ namespace Base_CSharp_course_exercise
      After processing the text, the program should display statistics 
      on the words found and the frequency of their repetitions in the text, 
      the list should be sorted in descending order.
-     After displaying general statistics, the program waits for the user
+     After displaying general statistics, the program waits for the user 
      to enter a word and returns information about all occurrences of the word 
      in the text (line number and position).
      */
@@ -45,8 +45,13 @@ namespace Base_CSharp_course_exercise
                 }
                 else
                 {
-                    numberOfWords.Add(splittedText[i], 0);
+                    numberOfWords.Add(splittedText[i], 1);
                 }
+            }
+
+            foreach (KeyValuePair<string, int> word in numberOfWords.OrderByDescending(x => x.Value))
+            {
+                Console.WriteLine("{0} {1}", word.Key, word.Value);
             }
 
             Console.WriteLine("\n\n----------------------------------------------------------");
