@@ -71,16 +71,17 @@ namespace Base_CSharp_course_exercise
         {
             Console.WriteLine("Word \"{0}\" was met in text {1} times\n",
                 findedWord, 
-                numberOfWords.FirstOrDefault(x => x.Key == findedWord).Value);
+                numberOfWords.FirstOrDefault(x => x.Key.ToLower() == findedWord.ToLower()).Value);
             foreach (var word in words)
             {
-                if (findedWord.ToUpper() == word.Name.ToUpper())
+                if (findedWord.ToLower() == word.Name.ToLower())
                 {
                     Console.WriteLine("Word \"{0}\" occured in {1} line at {2} position", 
                         findedWord, word.Line, word.Position);
                 }
                 
             }
+
         }
     }
 }
