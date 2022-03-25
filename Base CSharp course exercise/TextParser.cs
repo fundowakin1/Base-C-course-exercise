@@ -5,8 +5,10 @@ using System.Linq;
 
 namespace Base_CSharp_course_exercise
 {
+    /* Проектный код должен содержать комментарии описывающие логику работы и входные/выходные параметры */
     internal class TextParser
     {
+        /* Для определения разделителя можно использовать готовые методы Char.IsSeparator(), Char.IsPunctuation() */
         private static char[] separators = { ' ', '.', ',', '!', '?', '"', '\t', '\n', '\r' };
         public static List<string> SplittingText(string text)
         {
@@ -19,6 +21,7 @@ namespace Base_CSharp_course_exercise
             {
                 string line;
                 var counter = 1;
+                /* В условии while вместо != null можно испольовать string.IsNullOrEmpty() и string.IsNullOrWhiteSpace() */
                 while ((line = reader.ReadLine()) != null)
                 {
                     Console.WriteLine(line);
@@ -44,6 +47,8 @@ namespace Base_CSharp_course_exercise
             }
         }
 
+        /* В этой функции я вижу расчет кол-ва вхождений слова но не вижу логики сортировки.
+         Для автоматической соритровки можно использовать SortedDictionary */
         public static void CountingAndSortingWords(List<string> splittedText, Dictionary<string, int> numberOfWords)
         {
             for (var i = 0; i < splittedText.Count; i++)
@@ -72,6 +77,21 @@ namespace Base_CSharp_course_exercise
             Console.WriteLine("Word \"{0}\" was met in text {1} times\n",
                 findedWord,
                 numberOfWords.FirstOrDefault(x => x.Key.ToLower() == findedWord.ToLower()).Value);
+            /*
+             * Блок кода можно было бы упростить и выполнить проход по массиву один раз.
+             */
+            var wordOccurrences = numberOfWords.FirstOrDefault(x => x.Key.ToLower() == findedWord.ToLower()).Value;
+            if (wordOccurrences == 0)
+            {
+                Console.WriteLine("Word is not found!\n");
+                return;
+            }
+            else
+            {
+                /* Для формирования строкового вывода можно использовать новый формат */
+                Console.WriteLine($"Word {findedWord} was met in text {wordOccurrences} times\n");
+            }
+
             foreach (var word in words)
             {
                 if (findedWord.ToLower() == word.Name.ToLower())
