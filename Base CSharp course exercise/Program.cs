@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Base_CSharp_course_exercise
 {
@@ -23,31 +22,29 @@ namespace Base_CSharp_course_exercise
 
                 TextParser.PuttingWordsToList(path, splittedText, words);
 
-                Dictionary<string, int> numberOfWords = new();
-
-                TextParser.CountingAndSortingWords(splittedText, numberOfWords);
+                var numberOfWords = TextParser.CountingAndSortingWords(splittedText);
 
                 Console.WriteLine("\n\n----------------------------------------------------------");
                 Console.WriteLine("Statistics:");
                 Console.WriteLine("----------------------------------------------------------\n");
                 Console.WriteLine("|------------------|");
-                foreach (KeyValuePair<string, int> word in numberOfWords.OrderByDescending(x => x.Value))
+                foreach (KeyValuePair<string, int> word in numberOfWords)
                 {
-                    Console.WriteLine("|{0,-10} | {1,-5}|", word.Key, word.Value);
+                    Console.WriteLine($"|{word.Key,-10} | {word.Value,-5}|");
                     Console.WriteLine("|------------------|");
                 }
-                var findedWord = " ";
+                var foundWord = " ";
 
-                while (findedWord != "-1")
+                while (foundWord != "-1")
                 {
                     Console.WriteLine("Type your word to see statistics: (type \"-1\" to turn off programm)");
-                    findedWord = Console.ReadLine();
-                    if (findedWord == "-1")
+                    foundWord = Console.ReadLine();
+                    if (foundWord == "-1")
                     {
                         Console.WriteLine("Have a nice day");
                         Environment.Exit(0);
                     }
-                    TextParser.FindWord(numberOfWords, words, findedWord);
+                    TextParser.FindWord(numberOfWords, words, foundWord);
                 }
             }
             catch (Exception e)
