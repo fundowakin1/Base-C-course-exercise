@@ -27,7 +27,7 @@ namespace Base_CSharp_course_exercise
             {
                 string line;
                 var counter = 1;
-                while ((line = reader.ReadLine()) != null)
+                while (!string.IsNullOrEmpty(line = reader.ReadLine()))
                 {
                     Console.WriteLine(line);
                     var temp = TextParser.SplittingText(line);
@@ -56,9 +56,9 @@ namespace Base_CSharp_course_exercise
         /// Counts words and put them into Dictionary and sorts it 
         /// </summary>
         /// <param name="splittedText">List which we are using to put words into Dictionary</param>
-        /// <param name="numberOfWords">empty Dictionary in which we put word as key and number of occurrences of this word as value</param>
-        public static void CountingAndSortingWords(List<string> splittedText, Dictionary<string, int> numberOfWords)
+        public static Dictionary<string, int> CountingAndSortingWords(List<string> splittedText)
         {
+            Dictionary<string, int> numberOfWords = new Dictionary<string, int>();
             for (var i = 0; i < splittedText.Count; i++)
             {
                 splittedText[i] = splittedText[i].ToLower();
@@ -73,7 +73,7 @@ namespace Base_CSharp_course_exercise
                     numberOfWords.Add(splittedText[i], 1);
                 }
             }
-            _ = numberOfWords.OrderByDescending(x => x.Value);
+            return numberOfWords.OrderByDescending(x => x.Value).ToDictionary(x=>x.Key, x=>x.Value);
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace Base_CSharp_course_exercise
 
             foreach (var word in words)
             {
-                if (foundWord.ToLower() == word.Name.ToLower())
+                if (string.CompareOrdinal(foundWord.ToLower(),word.Name.ToLower()) != 0)
                 {
                     Console.WriteLine($"Word \"{foundWord}\" occured in {word.Line} line at {word.Position} position");
                 }

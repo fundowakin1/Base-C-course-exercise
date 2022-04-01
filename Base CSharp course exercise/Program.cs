@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Base_CSharp_course_exercise
 {
@@ -23,9 +22,7 @@ namespace Base_CSharp_course_exercise
 
                 TextParser.PuttingWordsToList(path, splittedText, words);
 
-                Dictionary<string, int> numberOfWords = new();
-
-                TextParser.CountingAndSortingWords(splittedText, numberOfWords);
+                var numberOfWords = TextParser.CountingAndSortingWords(splittedText);
 
                 Console.WriteLine("\n\n----------------------------------------------------------");
                 Console.WriteLine("Statistics:");
